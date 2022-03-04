@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from LITReview.authentication import views
+from django.contrib.auth.views import LoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('login_page/', views.login_page),
+    path('', LoginView.as_view(
+        template_name='authentication/login_page.html',
+        redirect_authenticated_user=True), name='login_page')
 ]
