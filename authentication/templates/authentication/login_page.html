@@ -1,27 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>LITReview Login Page</title>
-</head>
-<body>
-    <header>
-        <h1>Login Page</h1>
-    </header>
-    <div>
-        <h2>Login</h2>
-        {% block content %}
-            <p>{{ message }}</p>
-            <form method="post">
-                {{ form.as_p }}
-                {% csrf_token %}
-                <button type="submit">Submit</button>
-            </form>
-        {% endblock content %}
-    </div>
-    <div>
-        <h2>Register now</h2>
-        <button>Register</button>
-    </div>
-</body>
-</html>
+{% extends 'base.html' %}
+    {% block content %}
+        <p>{{ message }}</p>
+        <form method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <button type="submit">Submit</button>
+        </form>
+    {% endblock content %}
