@@ -22,3 +22,7 @@ def login_page(request):
                 message = 'Wrong identifiers.'
     return render(
         request, 'authentication/login_page.html', context={'form': form, 'message': message})
+
+
+def hello(request):
+    return render(request, 'authentication/login_page.html')
