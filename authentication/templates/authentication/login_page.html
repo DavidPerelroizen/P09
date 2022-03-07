@@ -10,8 +10,14 @@
     </header>
     <div>
         <h2>Login</h2>
-        {{ form }}
-        <button>Submit</button>
+        {% block content %}
+            <p>{{ message }}</p>
+            <form method="post">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <button type="submit">Submit</button>
+            </form>
+        {% endblock content %}
     </div>
     <div>
         <h2>Register now</h2>
