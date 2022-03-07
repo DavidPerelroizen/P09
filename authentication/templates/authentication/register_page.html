@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register form</title>
+</head>
+<body>
+  <h1>Register now!</h1>
+  {% block content %}
+  <form method="post">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button type="submit">Register</button>
+    <button type="button"><a href="{% url 'login_page' %}">Cancel</a> </button>
+  </form>
+  {% endblock content %}
+</body>
+</html>
