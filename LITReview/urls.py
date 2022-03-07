@@ -25,7 +25,7 @@ urlpatterns = [
         template_name='authentication/login_page.html',
         redirect_authenticated_user=True),
          name='login_page'),
-    path('', LogoutView.as_view(),
+    path('logout_page/', LogoutView.as_view(),
          name='logout_page'),
     path('home_page/', home_page, name='home_page'),
 ]
