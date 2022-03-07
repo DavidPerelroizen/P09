@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.auth.views import LoginView, LogoutView
 from feedapp.views import home_page
+from authentication.views import register_page
 
 
 urlpatterns = [
@@ -28,4 +29,5 @@ urlpatterns = [
     path('logout_page/', LogoutView.as_view(),
          name='logout_page'),
     path('home_page/', home_page, name='home_page'),
+    path('register_page/', register_page, name='register_page'),
 ]
