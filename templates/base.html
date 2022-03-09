@@ -6,6 +6,10 @@
 </head>
 <body>
   <h1>LITReview</h1>
+  <nav>
+      <a href="{% url 'home_page' %}">Home page</a>
+      <a href="{% url 'create_ticket' %}">Create a ticket</a>
+  </nav>
   {% block content %} {% endblock content %}
   {% if user.is_authenticated %}
     <p>You are connected as {{ user }}. <a href="{% url 'logout_page' %}">Log out</a></p>
