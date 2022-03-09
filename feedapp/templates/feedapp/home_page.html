@@ -1,5 +1,15 @@
 {% extends 'base.html' %}
     {% block content %}
-    <h1>Home page</h1>
-        <p>You are connected</p>
+        <h1>Home page</h1>
+        {% for ticket in tickets %}
+            <div>
+                <h4>{{ ticket.user }} asked for a review</h4>
+                <div>{{ ticket.time_created }}</div>
+                <h4>{{ ticket.title }}</h4>
+                <p>{{ ticket.description }}</p>
+                {% if ticket.image.url is not None %}
+                    <img src="{{ ticket.image.url }}">
+                {% endif %}
+            </div>
+        {% endfor %}
     {% endblock content %}
