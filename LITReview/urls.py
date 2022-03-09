@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth.views import LoginView, LogoutView
-from feedapp.views import home_page
+from feedapp.views import home_page, ticket_creation
 from authentication.views import register_page
 
 
@@ -30,4 +30,5 @@ urlpatterns = [
          name='logout_page'),
     path('home_page/', home_page, name='home_page'),
     path('register_page/', register_page, name='register_page'),
+    path('create_ticket/', ticket_creation, name='create_ticket'),
 ]
