@@ -13,11 +13,11 @@ def home_page(request):
 
 @login_required
 def ticket_creation(request):
-    ticket_form = forms.TicketForm()
+    user_id = request.user
+    ticket_form = forms.TicketForm(user_id=user_id)
     if request.method == 'POST':
         ticket_form = forms.TicketForm(request.POST, request.FILES)
         if ticket_form.is_valid():
-            ticket_form.save(commit=False)
             ticket_form.user = request.user
             ticket_form.save()
             return redirect('home_page')
@@ -30,7 +30,6 @@ def review_creation(request):
     if request.method == 'POST':
         review_form = forms.ReviewForm(request.POST)
         if review_form.is_valid():
-            review_form.save(commit=False)
             review_form.user = request.user
             review_form.save()
             return redirect('home_page')
