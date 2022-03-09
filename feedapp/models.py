@@ -5,7 +5,7 @@ from LITReview import settings
 # Create your models here.
 
 
-class Ticket:
+class Ticket(models.Model):
     title = models.CharField(max_length=128)
     description = models.CharField(max_length=2048, blank=True)
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -13,7 +13,7 @@ class Ticket:
     time_created = models.DateTimeField(auto_now_add=True)
 
 
-class Review:
+class Review(models.Model):
     ticket = models.ForeignKey(to=Ticket, on_delete=models.CASCADE)
     rating = models.PositiveSmallIntegerField(max_length=1024, validators=[MinValueValidator(0), MaxValueValidator(5)])
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -22,7 +22,7 @@ class Review:
     time_created = models.DateTimeField(auto_now_add=True)
 
 
-class UserFollows:
+class UserFollows(models.Model):
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     followed_user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='followed_by')
 
