@@ -18,7 +18,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 from django.contrib.auth.views import LoginView, LogoutView
-from feedapp.views import home_page, ticket_creation
+from feedapp.views import home_page, ticket_creation, review_creation
 from authentication.views import register_page
 
 
@@ -33,6 +33,7 @@ urlpatterns = [
     path('home_page/', home_page, name='home_page'),
     path('register_page/', register_page, name='register_page'),
     path('create_ticket/', ticket_creation, name='create_ticket'),
+    path('create_review/', review_creation, name='create_review'),
 ]
 
 if settings.DEBUG:
