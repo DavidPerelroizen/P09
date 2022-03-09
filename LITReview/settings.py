@@ -133,3 +133,7 @@ LOGIN_URL = 'login_page'
 LOGIN_REDIRECT_URL = 'home_page'
 
 LOGOUT_REDIRECT_URL = LOGIN_URL
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = 'media/'
