@@ -1,16 +1,12 @@
 {% extends 'base.html' %}
     {% block content %}
         <h1>Home page</h1>
-        {% for ticket in tickets %}
-            <div>
-                <h4>{{ ticket.user }} asked for a review</h4>
-                <div>{{ ticket.time_created }}</div>
-                <h4>{{ ticket.title }}</h4>
-                <p>{{ ticket.description }}</p>
-                {% if ticket.image.url is not None %}
-                    <img src="{{ ticket.image.url }}">
-                {% endif %}
-            </div>
+        {% for post in posts %}
+            {% if post.content_type == 'TICKET' %}
+                {% include 'feedapp/partials/ticket_snippet.html' with ticket=post %}
+            {% elif post.content_type == 'REVIEW' %}
+                {% include 'feedapp/partials/review_snippet.html' with review=post %}
+            {% endif %}
             <hr>
         {% endfor %}
     {% endblock content %}
