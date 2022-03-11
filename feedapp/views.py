@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from . import forms, models
+from itertools import chain
+from django.db.models import CharField, Value
 
 # Create your views here.
 
@@ -8,7 +10,11 @@ from . import forms, models
 @login_required
 def home_page(request):
     tickets = models.Ticket.objects.all()
-    return render(request, 'feedapp/home_page.html', context={'tickets': tickets})
+    reviews = models.Review.objects.all()
+    tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
+    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+    posts = sorted(chain(tickets, reviews), key=lambda post: post.time_created, reverse=True)
+    return render(request, 'feedapp/home_page.html', context={'posts': posts})
 
 
 @login_required
