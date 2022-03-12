@@ -1,3 +1,5 @@
+{% load feedapp_extras %}
+
 <div>
     <h4>{{ ticket.user }} asked for a review</h4>
     <div>{{ ticket.time_created }}</div>
@@ -6,5 +8,7 @@
     {% if ticket.image.url is not None %}
         <img src="{{ ticket.image.url }}">
     {% endif %}
-    <button type="button"><a href="{% url 'answer_ticket' ticket.id %}">Create a review</a></button>
+    {% if ticket|ticket_has_review == False %}
+        <button type="button"><a href="{% url 'answer_ticket' ticket.id %}">Create a review</a></button>
+    {% endif %}
 </div>
