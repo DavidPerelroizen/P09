@@ -6,4 +6,5 @@
     {% if ticket.image.url is not None %}
         <img src="{{ ticket.image.url }}">
     {% endif %}
+    <button type="button"><a href="{% url 'create_review' %}">Create a review</a></button>
 </div>
