@@ -4,4 +4,9 @@
     <h4>{{ review.headline }}</h4>
     <h5>Rating: {{ review.rating }}</h5>
     <p>{{ review.body }}</p>
+    <div>
+        {% if review.ticket %}
+            {% include 'feedapp/partials/ticket_snippet.html' with ticket=review.ticket %}
+        {% endif %}
+    </div>
 </div>
