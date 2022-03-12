@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from . import forms, models
 from itertools import chain
@@ -41,3 +41,22 @@ def review_creation(request):
             review_form.save()
             return redirect('home_page')
     return render(request, 'feedapp/create_review.html', context={'review_form': form})
+
+
+@login_required
+def answer_to_ticket(request, ticket_id):
+    ticket_to_answer = get_object_or_404(models.Ticket, id=ticket_id)
+    form_review = forms.ReviewForm()
+    if request.method == 'POST':
+        form_review = forms.ReviewForm(request.POST)
+        if form_review.is_valid():
+            review_form = form_review.save(commit=False)
+            review_form.user = request.user
+            review_form.ticket = ticket_to_answer
+            review_form.save()
+            return redirect('home_page')
+    return render(request, 'feedapp/answer_ticket.html', context={'review_form': form_review,
+                                                                  'ticket': ticket_to_answer})
+
+
+
