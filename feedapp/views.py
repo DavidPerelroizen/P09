@@ -61,7 +61,7 @@ def answer_to_ticket(request, ticket_id):
 
 @login_required
 def follow_user(request):
-    followed_users = models.UserFollows.objects.all()
+    followed_users = models.UserFollows.objects.filter(user=request.user)
     form = forms.FollowUserForm()
     if request.method == 'POST':
         form = forms.FollowUserForm(request.POST)
