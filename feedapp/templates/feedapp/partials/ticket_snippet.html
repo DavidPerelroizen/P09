@@ -1,8 +1,8 @@
 {% load feedapp_extras %}
 
 <div>
-    <h4>{{ ticket.user }} asked for a review</h4>
-    <div>{{ ticket.time_created }}</div>
+    <h4>{% get_poster_display ticket.user %} asked for a review</h4>
+    <div>{{ ticket.time_created|get_posted_at_display }}</div>
     <h4>{{ ticket.title }}</h4>
     <p>{{ ticket.description }}</p>
     {% if ticket.image.url is not None %}
