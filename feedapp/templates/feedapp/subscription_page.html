@@ -1,9 +1,26 @@
 {% extends 'base.html' %}
     {% block content %}
-        <h2>Follow users</h2>
-        <form method="post">
-          {{ subscription_form.as_p }}
-          {% csrf_token %}
-          <button type="submit">Follow</button>
-        </form>
+        <div>
+            <h2>Follow users</h2>
+            <form method="post">
+              {{ subscription_form.as_p }}
+              {% csrf_token %}
+              <button type="submit">Follow</button>
+            </form>
+        </div>
+        <div>
+            <h2>Followed users</h2>
+            <table>
+                <tr>
+                    <td>User</td>
+                    <td>Unsubscribe</td>
+                </tr>
+                {% for user_followed in followed_users %}
+                    <tr>
+                        <td>{{ user_followed.followed_user.username }}</td>
+                        <td><button type="button">Del</button></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
     {% endblock content %}
