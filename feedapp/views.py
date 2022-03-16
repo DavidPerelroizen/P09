@@ -2,15 +2,17 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from . import forms, models
 from itertools import chain
-from django.db.models import CharField, Value
+from django.db.models import CharField, Value, Q
 
 # Create your views here.
 
 
 @login_required
 def home_page(request):
-    tickets = models.Ticket.objects.all()
-    reviews = models.Review.objects.all()
+    tickets = models.Ticket.objects.filter(Q(user=request.user) |
+                                           Q(user__in=request.user.follows.all()))
+    reviews = models.Review.objects.filter(Q(user=request.user) |
+                                           Q(user__in=request.user.follows.all()))
     tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
     posts = sorted(chain(tickets, reviews), key=lambda post: post.time_created, reverse=True)
