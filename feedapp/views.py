@@ -61,14 +61,17 @@ def answer_to_ticket(request, ticket_id):
 
 @login_required
 def follow_user(request):
+    followed_users = models.UserFollows.objects.all()
     form = forms.FollowUserForm()
     if request.method == 'POST':
         form = forms.FollowUserForm(request.POST)
         if form.is_valid():
             follow_user_form = form.save(commit=False)
+            follow_user_form.user = request.user
             follow_user_form.save()
             return redirect('subscription_page')
-    return render(request, 'feedapp/subscription_page.html', context={'subscription_form': form})
+    return render(request, 'feedapp/subscription_page.html', context={'subscription_form': form,
+                                                                      'followed_users': followed_users})
 
 
 
