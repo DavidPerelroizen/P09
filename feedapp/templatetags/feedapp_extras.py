@@ -17,20 +17,19 @@ def ticket_has_review(value):
         test_existing_reviews = True
     return test_existing_reviews
 
-"""
+
 @register.filter
 def get_posted_at_display(posted_at):
     seconds_ago = (timezone.now() - posted_at).total_seconds()
     if seconds_ago <= HOUR:
-        return f'Publié il y a {int(seconds_ago // MINUTE)} minutes.'
+        return f'Published {int(seconds_ago // MINUTE)} minutes ago.'
     elif seconds_ago <= DAY:
-        return f'Publié il y a {int(seconds_ago // HOUR)} heures.'
-    return f'Publié le {posted_at.strftime("%d %b %y à %Hh%M")}'
+        return f'Published {int(seconds_ago // HOUR)} hours ago.'
+    return f'Published on {posted_at.strftime("%d %b %y à %Hh%M")}'
 
 
 @register.simple_tag(takes_context=True)
 def get_poster_display(context, user):
     if user == context['user']:
-        return 'vous'
+        return 'You'
     return user.username
-"""
