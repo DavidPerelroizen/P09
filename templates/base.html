@@ -10,6 +10,7 @@
       <a href="{% url 'home_page' %}">Home page</a>
       <a href="{% url 'create_ticket' %}">Create a ticket</a>
       <a href="{% url 'create_review' %}">Create a review</a>
+      <a href="{% url 'subscription_page' %}">Subscriptions</a>
   </nav>
   {% block content %} {% endblock content %}
   {% if user.is_authenticated %}
