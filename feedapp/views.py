@@ -59,4 +59,16 @@ def answer_to_ticket(request, ticket_id):
                                                                   'ticket': ticket_to_answer})
 
 
+@login_required
+def follow_user(request):
+    form = forms.FollowUserForm()
+    if request.method == 'POST':
+        form = forms.FollowUserForm(request.POST)
+        if form.is_valid():
+            follow_user_form = form.save(commit=False)
+            follow_user_form.save()
+            return redirect('subscription_page')
+    return render(request, 'feedapp/subscription_page.html', context={'subscription_form': form})
+
+
 
