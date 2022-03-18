@@ -9,10 +9,10 @@ from django.db.models import CharField, Value, Q
 
 @login_required
 def home_page(request):
-    tickets = models.Ticket.objects.filter(Q(user=request.user) |
-                                           Q(user__in=request.user.follows.all()))
-    reviews = models.Review.objects.filter(Q(user=request.user) |
-                                           Q(user__in=request.user.follows.all()))
+    follower = models.UserFollows.objects.filter(user=request.user).values('followed_user')
+    print(follower)
+    tickets = models.Ticket.objects.filter(Q(user=request.user) | Q(user__in=follower))
+    reviews = models.Review.objects.filter(Q(user=request.user) | Q(user__in=follower))
     tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
     posts = sorted(chain(tickets, reviews), key=lambda post: post.time_created, reverse=True)
