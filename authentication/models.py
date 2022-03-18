@@ -9,4 +9,4 @@ class User(AbstractUser):
 
     USERNAME_FIELD = 'username'
 
-    follows = models.ManyToManyField('self', symmetrical=False)
+    follows = models.ManyToManyField('self', symmetrical=False, verbose_name='follows')
