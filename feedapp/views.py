@@ -34,14 +34,21 @@ def ticket_creation(request):
 @login_required
 def review_creation(request):
     form = forms.ReviewForm()
+    form_ticket = forms.TicketForm()
     if request.method == 'POST':
         form = forms.ReviewForm(request.POST)
-        if form.is_valid():
+        form_ticket = forms.TicketForm(request.POST)
+        if form.is_valid() and form_ticket.is_valid():
+            ticket_form = form_ticket.save(commit=False)
+            ticket_form.user = request.user
+            ticket_form.save()
+            ticket_to_answer = models.Ticket.objects.last()
             review_form = form.save(commit=False)
             review_form.user = request.user
+            review_form.ticket = ticket_to_answer
             review_form.save()
             return redirect('home_page')
-    return render(request, 'feedapp/create_review.html', context={'review_form': form})
+    return render(request, 'feedapp/create_review.html', context={'review_form': form, 'ticket_form': form_ticket})
 
 
 @login_required
