@@ -10,7 +10,6 @@ from django.db.models import CharField, Value, Q
 @login_required
 def home_page(request):
     follower = models.UserFollows.objects.filter(user=request.user).values('followed_user')
-    print(follower)
     tickets = models.Ticket.objects.filter(Q(user=request.user) | Q(user__in=follower))
     reviews = models.Review.objects.filter(Q(user=request.user) | Q(user__in=follower))
     tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
