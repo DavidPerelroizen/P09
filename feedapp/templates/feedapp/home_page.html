@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
     {% block content %}
-        <h1>Home page</h1>
+        <h1>Feed</h1>
+        <button type="button"><a href="{% url 'create_ticket' %}">Create a ticket</a></button>
+        <button type="button"><a href="{% url 'create_review' %}">Create a review</a></button>
         {% for post in posts %}
             {% if post.content_type == 'TICKET' %}
                 {% include 'feedapp/partials/ticket_snippet.html' with ticket=post %}
