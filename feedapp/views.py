@@ -82,4 +82,14 @@ def follow_user(request):
                                                                       'followed_users': followed_users})
 
 
+@login_required
+def my_posts_page(request):
+    tickets = models.Ticket.objects.filter(user=request.user)
+    reviews = models.Review.objects.filter(user=request.user)
+    tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
+    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+    posts = sorted(chain(tickets, reviews), key=lambda post: post.time_created, reverse=True)
+    return render(request, 'feedapp/my_posts_page.html', context={'posts': posts})
+
+
 
