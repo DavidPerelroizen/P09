@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
     {% block content %}
         <h2>Answer to ticket</h2>
+        <h3>You are publishing a response to: </h3>
+        {% include 'feedapp/partials/ticket_snippet.html' %}
+        <h3>Review</h3>
         <form method="post">
           {{ review_form.as_p }}
           {% csrf_token %}
           <button type="submit">Publish</button>
         </form>
-        <hr>
-            {% include 'feedapp/partials/ticket_snippet.html' %}
     {% endblock content %}
