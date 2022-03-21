@@ -107,4 +107,18 @@ def modify_ticket(request, ticket_id):
     return render(request, 'feedapp/ticket_update.html', context={'ticket_update': form})
 
 
+@login_required
+def modify_review(request, review_id):
+    review = get_object_or_404(models.Review, id=review_id)
+    form = forms.ReviewForm(instance=review)
+    if request.method == 'POST':
+        form = forms.ReviewForm(request.POST)
+        if form.is_valid():
+            review_form = form.save(commit=False)
+            review_form.user = request.user
+            review_form.save()
+            review.delete()
+            return redirect('home_page')
+    return render(request, 'feedapp/review_update.html', context={'review_update': form})
+
 

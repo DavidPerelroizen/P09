@@ -8,6 +8,7 @@
                     <button type="submit"><a href="{% url 'ticket_update' post.id %}">Update</a></button>
             {% elif post.content_type == 'REVIEW' %}
                 {% include 'feedapp/partials/review_snippet.html' with review=post %}
+                    <button type="submit"><a href="{% url 'review_update' post.id %}">Update</a></button>
             {% endif %}
             <hr>
         {% endfor %}
