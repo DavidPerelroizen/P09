@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from . import forms, models
 from itertools import chain
 from django.db.models import CharField, Value, Q
+import requests
 
 # Create your views here.
 
@@ -122,3 +123,27 @@ def modify_review(request, review_id):
     return render(request, 'feedapp/review_update.html', context={'review_update': form})
 
 
+@login_required
+def delete_ticket(request, ticket_id):
+    post_to_delete = get_object_or_404(models.Ticket, id=ticket_id)
+    delete_post_form = forms.DeletePostForm()
+    if request.method == 'POST':
+        if 'delete_post' in request.POST:
+            delete_post_form = forms.DeletePostForm(request.POST)
+            if delete_post_form.is_valid():
+                post_to_delete.delete()
+                return redirect('my_posts_page')
+    return render(request, 'feedapp/delete_ticket_page.html', context={'delete_post_form': delete_post_form})
+
+
+@login_required
+def delete_review(request, review_id):
+    post_to_delete = get_object_or_404(models.Ticket, id=review_id)
+    delete_post_form = forms.DeletePostForm()
+    if request.method == 'POST':
+        if 'delete_post' in request.POST:
+            delete_post_form = forms.DeletePostForm(request.POST)
+            if delete_post_form.is_valid():
+                post_to_delete.delete()
+                return redirect('my_posts_page')
+    return render(request, 'feedapp/delete_review_page.html', context={'delete_post_form': delete_post_form})

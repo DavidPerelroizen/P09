@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+    {% block content %}
+        <h2>Delete ticket</h2>
+        <form method="post">
+          {{ delete_post_form }}
+          {% csrf_token %}
+          <button type="submit">Confirm deletion</button>
+        </form>
+    {% endblock content %}

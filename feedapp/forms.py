@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 
 
 class TicketForm(forms.ModelForm):
+    edit_form = forms.BooleanField(widget=forms.HiddenInput, initial=True)
 
     class Meta:
         model = models.Ticket
@@ -11,6 +12,7 @@ class TicketForm(forms.ModelForm):
 
 
 class ReviewForm(forms.ModelForm):
+    edit_form = forms.BooleanField(widget=forms.HiddenInput, initial=True)
 
     class Meta:
         model = models.Review
@@ -22,3 +24,6 @@ class FollowUserForm(forms.ModelForm):
         model = models.UserFollows
         fields = ['followed_user']
 
+
+class DeletePostForm(forms.Form):
+    delete_post = forms.BooleanField(widget=forms.HiddenInput, initial=True)
