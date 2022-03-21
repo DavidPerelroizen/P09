@@ -11,10 +11,6 @@
         <div>
             <h2>Followed users</h2>
             <table>
-                <tr>
-                    <td>User</td>
-                    <td>Unsubscribe</td>
-                </tr>
                 {% for user_followed in followed_users %}
                     <tr>
                         <td>{{ user_followed.followed_user.username }}</td>
@@ -24,6 +20,17 @@
                             </button>
                         </td>
                     </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <br>
+        <div>
+            <h2>Followers</h2>
+            <table>
+                {% for follower in followers %}
+                <tr>
+                    <td>{{ follower.user.username }}</td>
+                </tr>
                 {% endfor %}
             </table>
         </div>
