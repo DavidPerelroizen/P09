@@ -92,4 +92,19 @@ def my_posts_page(request):
     return render(request, 'feedapp/my_posts_page.html', context={'posts': posts})
 
 
+@login_required
+def modify_ticket(request, ticket_id):
+    ticket = get_object_or_404(models.Ticket, id=ticket_id)
+    form = forms.TicketForm(instance=ticket)
+    if request.method == 'POST':
+        form = forms.TicketForm(request.POST)
+        if form.is_valid():
+            ticket_form = form.save(commit=False)
+            ticket_form.user = request.user
+            ticket_form.save()
+            ticket.delete()
+            return redirect('home_page')
+    return render(request, 'feedapp/ticket_update.html', context={'ticket_update': form})
+
+
 
