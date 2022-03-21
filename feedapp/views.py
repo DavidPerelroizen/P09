@@ -133,12 +133,13 @@ def delete_ticket(request, ticket_id):
             if delete_post_form.is_valid():
                 post_to_delete.delete()
                 return redirect('my_posts_page')
-    return render(request, 'feedapp/delete_ticket_page.html', context={'delete_post_form': delete_post_form})
+    return render(request, 'feedapp/delete_ticket_page.html', context={'delete_post_form': delete_post_form,
+                                                                       'post_to_delete': post_to_delete})
 
 
 @login_required
 def delete_review(request, review_id):
-    post_to_delete = get_object_or_404(models.Ticket, id=review_id)
+    post_to_delete = get_object_or_404(models.Review, id=review_id)
     delete_post_form = forms.DeletePostForm()
     if request.method == 'POST':
         if 'delete_post' in request.POST:
@@ -146,4 +147,5 @@ def delete_review(request, review_id):
             if delete_post_form.is_valid():
                 post_to_delete.delete()
                 return redirect('my_posts_page')
-    return render(request, 'feedapp/delete_review_page.html', context={'delete_post_form': delete_post_form})
+    return render(request, 'feedapp/delete_review_page.html', context={'delete_post_form': delete_post_form,
+                                                                       'post_to_delete': post_to_delete})

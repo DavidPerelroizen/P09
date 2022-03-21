@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
     {% block content %}
         <h2>Delete ticket</h2>
+        {% include 'feedapp/partials/ticket_snippet.html' with ticket=post_to_delete %}
+        <hr>
         <form method="post">
           {{ delete_post_form }}
           {% csrf_token %}
