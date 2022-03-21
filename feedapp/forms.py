@@ -21,3 +21,4 @@ class FollowUserForm(forms.ModelForm):
     class Meta:
         model = models.UserFollows
         fields = ['followed_user']
+
