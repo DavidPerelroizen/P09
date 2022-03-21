@@ -84,6 +84,23 @@ def follow_user(request):
 
 
 @login_required
+def unfollow_user(request, user_id):
+    users_to_unfollow = models.UserFollows.objects.filter(user=request.user, followed_user=user_id)
+    form = forms.DeletePostForm()
+    if request.method == 'POST':
+        if 'delete_post' in request.POST:
+            form = forms.DeletePostForm(request.POST)
+            if form.is_valid():
+                users_to_unfollow.delete()
+                return redirect('subscription_page')
+    return render(request, 'feedapp/unsubscription_page.html', context={'deletion_form': form,
+                                                                        'users_to_unfollow':
+                                                                            users_to_unfollow})
+
+
+
+
+@login_required
 def my_posts_page(request):
     tickets = models.Ticket.objects.filter(user=request.user)
     reviews = models.Review.objects.filter(user=request.user)
