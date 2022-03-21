@@ -8,7 +8,4 @@
     {% if ticket.image.url is not None %}
         <img src="{{ ticket.image.url }}">
     {% endif %}
-    {% if ticket|ticket_has_review == False and ticket.user != user %}
-        <button type="button"><a href="{% url 'answer_ticket' ticket.id %}">Create a review</a></button>
-    {% endif %}
 </div>
