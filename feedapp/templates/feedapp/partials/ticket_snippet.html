@@ -1,6 +1,7 @@
 {% load feedapp_extras %}
 
 <div>
+    <h3>Ticket</h3>
     <h4>{% get_poster_display ticket.user %} asked for a review</h4>
     <div>{{ ticket.time_created|get_posted_at_display }}</div>
     <h4>{{ ticket.title }}</h4>
