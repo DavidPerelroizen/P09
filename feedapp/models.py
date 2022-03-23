@@ -41,5 +41,6 @@ class UserFollows(models.Model):
 
     class Meta:
         unique_together = ('user', 'followed_user')
+        constraints = [models.CheckConstraint(check=~models.Q(user=models.F('followed_user')), name='no_self_follow')]
 
 
