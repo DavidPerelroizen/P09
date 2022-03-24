@@ -3,7 +3,6 @@ from django.contrib.auth.decorators import login_required
 from . import forms, models
 from itertools import chain
 from django.db.models import CharField, Value, Q
-import requests
 
 # Create your views here.
 
@@ -12,7 +11,8 @@ import requests
 def home_page(request):
     follower = models.UserFollows.objects.filter(user=request.user).values('followed_user')
     tickets = models.Ticket.objects.filter(Q(user=request.user) | Q(user__in=follower))
-    reviews = models.Review.objects.filter(Q(user=request.user) | Q(user__in=follower))
+    reviews = models.Review.objects.filter(Q(user=request.user) | Q(user__in=follower) |
+                                           Q(ticket__in=tickets))
     tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
     posts = sorted(chain(tickets, reviews), key=lambda post: post.time_created, reverse=True)
