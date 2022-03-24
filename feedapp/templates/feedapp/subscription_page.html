@@ -2,11 +2,11 @@
     {% block content %}
         <div>
             <h2>Follow users</h2>
-            <form method="post">
-              {{ subscription_form.as_p }}
-              {% csrf_token %}
-              <button type="submit">Follow</button>
-            </form>
+                <form method="post">
+                  {{ subscription_form.as_p }}
+                  {% csrf_token %}
+                  <button type="submit">Follow</button>
+                </form>
         </div>
         <div>
             <h2>Followed users</h2>
