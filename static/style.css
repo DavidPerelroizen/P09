@@ -6,7 +6,6 @@ header {
 }
 header nav {
   border: 10px, black, solid;
-  background-color: green;
   display: flex;
   flex: 0.4;
   justify-content: space-around;
