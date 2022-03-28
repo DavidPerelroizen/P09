@@ -39,6 +39,15 @@ header .header_h1 {
   justify-content: space-around;
   align-items: center;
   width: 30%;
+  padding: 5px;
+}
+.main_content .ticket_area {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px black solid;
+  padding: 5px
 }
 
 .review {
@@ -62,8 +71,7 @@ header .header_h1 {
 .ticket {
   display: flex;
   flex-direction: column;
-  border: 1px black solid;
-  width: 50%;
+  width: 95%;
   padding: 5px;
 }
 .ticket .ticket_info {
@@ -72,6 +80,8 @@ header .header_h1 {
 }
 
 footer {
-  border: 1px black solid;
+  border: 1px, black, solid;
   display: flex;
 }
+
+/*# sourceMappingURL=style.css.map */
