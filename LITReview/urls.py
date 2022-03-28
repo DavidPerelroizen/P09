@@ -19,7 +19,7 @@ from django.conf.urls.static import static
 from django.urls import path
 from django.contrib.auth.views import LoginView, LogoutView
 from feedapp.views import home_page, ticket_creation, review_creation, answer_to_ticket, follow_user, my_posts_page, \
-    modify_ticket, modify_review, delete_ticket, delete_review, unfollow_user
+    modify_ticket, modify_review, delete_ticket, delete_review, unfollow_user, follow_user_bis
 from authentication.views import register_page
 
 
@@ -43,6 +43,7 @@ urlpatterns = [
     path('feedapp/<int:ticket_id>/delete_ticket_page', delete_ticket, name='delete_ticket_page'),
     path('feedapp/<int:review_id>/delete_review_page', delete_review, name='delete_review_page'),
     path('feedapp/<int:user_id>/unsubscription_page', unfollow_user, name='unsubscription_page'),
+    path('feedapp/subscription/<int:user_id>', follow_user_bis, name='subscription'),
 ]
 
 if settings.DEBUG:

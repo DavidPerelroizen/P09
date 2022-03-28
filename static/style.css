@@ -1,0 +1,53 @@
+header {
+  border: 30px, black, solid;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+}
+header nav {
+  border: 10px, black, solid;
+  background-color: green;
+  display: flex;
+  flex: 0.4;
+  justify-content: space-around;
+  align-items: center;
+  text-decoration: none;
+}
+header .header_h1 {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main_content {
+  border: 30px, black, solid;
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.main_content h1 {
+  text-align: center;
+}
+.main_content .main_content_buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 30%;
+}
+.main_content .button_review_ticket {
+  border-radius: 5px;
+}
+.main_content .button_delete_update {
+  border-radius: 5px;
+}
+
+footer {
+  border: 30px, black, solid;
+  background-color: red;
+  display: flex;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,19 +1,28 @@
 {% extends 'base.html' %}
+{% load static %}
 
     {% block content %}
-        <h1>My Posts</h1>
-        <button type="button"><a href="{% url 'create_ticket' %}">Create a ticket</a></button>
-        <button type="button"><a href="{% url 'create_review' %}">Create a review</a></button>
-        {% for post in posts %}
-            {% if post.content_type == 'TICKET' %}
-                {% include 'feedapp/partials/ticket_snippet.html' with ticket=post %}
-                    <button type="submit"><a href="{% url 'ticket_update' post.id %}">Update</a></button>
-                    <button type="submit"><a href="{% url 'delete_ticket_page' post.id %}">Delete</a> </button>
-            {% elif post.content_type == 'REVIEW' %}
-                {% include 'feedapp/partials/review_snippet.html' with review=post %}
-                    <button type="submit"><a href="{% url 'review_update' post.id %}">Update</a></button>
-                    <button type="submit"><a href="{% url 'delete_review_page' post.id %}">Delete</a> </button>
-            {% endif %}
-            <hr>
-        {% endfor %}
+        <div class="main_content">
+            <h1>My Posts</h1>
+            <div class="main_content_buttons">
+                <button type="button" class="button_review_ticket"><a href="{% url 'create_ticket' %}">Create a ticket</a></button>
+                <button type="button" class="button_review_ticket"><a href="{% url 'create_review' %}">Create a review</a></button>
+            </div>
+            {% for post in posts %}
+                {% if post.content_type == 'TICKET' %}
+                    {% include 'feedapp/partials/ticket_snippet.html' with ticket=post %}
+                        <div class="main_content_buttons">
+                            <button type="submit" class="button_delete_update"><a href="{% url 'ticket_update' post.id %}">Update</a></button>
+                            <button type="submit" class="button_delete_update"><a href="{% url 'delete_ticket_page' post.id %}">Delete</a> </button>
+                        </div>
+                {% elif post.content_type == 'REVIEW' %}
+                    {% include 'feedapp/partials/review_snippet.html' with review=post %}
+                        <div class="main_content_buttons">
+                            <button type="submit"class="button_delete_update"><a href="{% url 'review_update' post.id %}">Update</a></button>
+                            <button type="submit" class="button_delete_update"><a href="{% url 'delete_review_page' post.id %}">Delete</a> </button>
+                        </div>
+                {% endif %}
+                <hr>
+            {% endfor %}
+        </div>
     {% endblock content %}

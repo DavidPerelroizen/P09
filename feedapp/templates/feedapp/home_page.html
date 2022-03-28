@@ -1,19 +1,24 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load feedapp_extras %}
 
     {% block content %}
+    <div class="main_content">
         <h1>Feed</h1>
-        <button type="button"><a href="{% url 'create_ticket' %}">Create a ticket</a></button>
-        <button type="button"><a href="{% url 'create_review' %}">Create a review</a></button>
-        {% for post in posts %}
-            {% if post.content_type == 'TICKET' %}
-                {% include 'feedapp/partials/ticket_snippet.html' with ticket=post %}
-                    {% if post|ticket_has_review == False and post.user != user %}
-                        <button type="button"><a href="{% url 'answer_ticket' post.id %}">Create a review</a></button>
-                    {% endif %}
-            {% elif post.content_type == 'REVIEW' %}
-                {% include 'feedapp/partials/review_snippet.html' with review=post %}
-            {% endif %}
-            <hr>
-        {% endfor %}
+            <div class="main_content_buttons">
+                <button type="button" class="button_review_ticket"><a href="{% url 'create_ticket' %}">Create a ticket</a></button>
+                <button type="button" class="button_review_ticket"><a href="{% url 'create_review' %}">Create a review</a></button>
+            </div>
+            {% for post in posts %}
+                {% if post.content_type == 'TICKET' %}
+                    {% include 'feedapp/partials/ticket_snippet.html' with ticket=post %}
+                        {% if post|ticket_has_review == False and post.user != user %}
+                            <button type="button" class="button_review_ticket"><a href="{% url 'answer_ticket' post.id %}">Create a review</a></button>
+                        {% endif %}
+                {% elif post.content_type == 'REVIEW' %}
+                    {% include 'feedapp/partials/review_snippet.html' with review=post %}
+                {% endif %}
+                <hr>
+            {% endfor %}
+    </div>
     {% endblock content %}

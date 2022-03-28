@@ -2,11 +2,14 @@
     {% block content %}
         <div>
             <h2>Follow users</h2>
-                <form method="post">
-                  {{ subscription_form.as_p }}
-                  {% csrf_token %}
-                  <button type="submit">Follow</button>
-                </form>
+            {% for user_to_follow in users_to_follow %}
+                <div>
+                    {{ user_to_follow.username }}
+                    <button type="submit">
+                        <a href="{% url 'subscription' user_to_follow.id %}">Follow</a>
+                    </button>
+                </div>
+            {% endfor %}
         </div>
         <div>
             <h2>Followed users</h2>

@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+
+import authentication.models
 from . import forms, models
 from itertools import chain
 from django.db.models import CharField, Value, Q
+from authentication.models import User
 
 # Create your views here.
 
@@ -72,17 +75,24 @@ def answer_to_ticket(request, ticket_id):
 def follow_user(request):
     followed_users = models.UserFollows.objects.filter(user=request.user)
     followers = models.UserFollows.objects.filter(followed_user=request.user)
-    form = forms.FollowUserForm()
-    if request.method == 'POST':
-        form = forms.FollowUserForm(request.POST)
-        if form.is_valid():
-            follow_user_form = form.save(commit=False)
-            follow_user_form.user = request.user
-            follow_user_form.save()
-            return redirect('subscription_page')
-    return render(request, 'feedapp/subscription_page.html', context={'subscription_form': form,
-                                                                      'followed_users': followed_users,
-                                                                      'followers': followers})
+    users_to_follow = authentication.models.User.objects.exclude(Q(id=request.user.id) |
+                                                                 Q(id__in=followed_users.values('followed_user')))
+    return render(request, 'feedapp/subscription_page.html', context={'followed_users': followed_users,
+                                                                      'followers': followers,
+                                                                      'users_to_follow': users_to_follow})
+
+
+@login_required
+def follow_user_bis(request, user_id):
+    try:
+        user = authentication.models.User.objects.get(id=user_id)
+    except Exception as err:
+        pass
+    user_follows = models.UserFollows()
+    user_follows.user = request.user
+    user_follows.followed_user = user
+    user_follows.save()
+    return redirect('subscription_page')
 
 
 @login_required

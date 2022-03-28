@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="FRONT/css/style.css"/>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
     <title>LITReview</title>
 </head>
 <body>
     <header>
-      <h1>LITReview</h1>
+        <div class="header_h1"><h1>LITReview</h1></div>
       <nav>
           <a href="{% url 'home_page' %}">Feed</a>
           <a href="{% url 'my_posts_page' %}">My Posts</a>
