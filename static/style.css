@@ -72,9 +72,6 @@ header .header_h1 {
 .review .review_rating {
   display: flex;
   border: 5px red solid;
-  .checked {
-  color: gold;
-}
 }
 .review .ticket_area {
   width: 100%;
@@ -94,9 +91,31 @@ header .header_h1 {
   justify-content: space-between;
 }
 
-footer {
-  border: 1px, black, solid;
+.answer_to_ticket .answer_to_ticket_area {
+  border: 1px black solid;
+}
+.answer_to_ticket .answer_to_ticket_area .answer_to_ticket_area_ticket_zone {
+  border: 1px black solid;
+  padding: 5px;
+}
+.answer_to_ticket .answer_to_ticket_area .answer_to_ticket_area_review_zone {
+  border: 1px black solid;
+  padding: 5px;
+}
+.answer_to_ticket .answer_to_ticket_area .answer_to_ticket_area_review_zone form {
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.answer_to_ticket .answer_to_ticket_area .answer_to_ticket_area_review_zone form button {
+  width: 80px;
+  border-radius: 5px;
+}
+
+footer {
+  border: 1px black solid;
+  display: flex;
+  width: 100%;
 }
 
 /*# sourceMappingURL=style.css.map */
