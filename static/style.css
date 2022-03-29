@@ -112,6 +112,27 @@ header .header_h1 {
   border-radius: 5px;
 }
 
+.create_a_review .create_a_review_area {
+  border: 1px black solid;
+}
+.create_a_review .create_a_review_area .create_a_review_area_ticket_zone {
+  border: 1px black solid;
+  padding: 5px;
+}
+.create_a_review .create_a_review_area .create_a_review_area_review_zone {
+  border: 1px black solid;
+  padding: 5px;
+}
+.create_a_review .create_a_review_area .create_a_review_area_review_zone form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.create_a_review .create_a_review_area .create_a_review_area_review_zone form button {
+  width: 80px;
+  border-radius: 5px;
+}
+
 footer {
   border: 1px black solid;
   display: flex;
