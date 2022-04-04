@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/DavidPerelroizen/P09/issues"
   },
-  "homepage": "https://github.com/DavidPerelroizen/P09#readme"
+  "homepage": "https://github.com/DavidPerelroizen/P09#readme",
+  "dependencies": {
+    "bootstrap": "^5.1.3"
+  }
 }

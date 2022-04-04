@@ -10,6 +10,8 @@ header nav {
   align-items: center;
   text-decoration: none;
 }
+
+}
 header .header_h1 {
   flex: 1;
   display: flex;
