@@ -18,10 +18,35 @@ header .header_h1 {
   align-items: center;
 }
 
+#login_zone{
+    border: 1px black solid;
+    padding: 20px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#login_zone .card{
+    border: none;
+    width: 400px;
+}
+.login_register{
+    text-align: center;
+    padding: 10px;
+}
 .register_now {
     border: 1px solid black;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.register_now h2 {
     text-align: center;
-    padding: 5px;
+    width: 100%;
 }
 
 .main_content {

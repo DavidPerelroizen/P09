@@ -9,13 +9,15 @@
     <title>Register form</title>
 </head>
 <body>
-  <header><h1>LITReview</h1></header>
+  <header><h1 class="login_register">LITReview</h1></header>
   <div class="register_now">
     <h2>Register now!</h2>
+    <br>
     {% block content %}
     <form method="post">
       {{ form.as_p }}
       {% csrf_token %}
+      <br>
       <button type="submit" class="btn btn-primary">Register</button>
       <a href="{% url 'login_page' %}" class="btn btn-primary">Cancel</a>
     </form>

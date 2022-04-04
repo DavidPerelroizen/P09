@@ -9,33 +9,35 @@
     <title>Login_page</title>
 </head>
 <body>
-    <header><h1>LITReview</h1></header>
-    {% block content %}
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Not yet registered?</h5>
-            <p class="card-text">Register now to access to our services.</p>
-            <a href="{% url 'register_page' %}" class="btn btn-primary">Register</a>
+    <header><h1 class="login_register">LITReview</h1></header>
+    <div id="login_zone">
+        {% block content %}
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Not yet registered?</h5>
+                <p class="card-text">Register now to access to our services.</p>
+                <a href="{% url 'register_page' %}" class="btn btn-primary">Register</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Log in</h5>
+                <p class="card-text">{{ message }}</p>
+                  <form method="post">
+                    {{ form.as_p }}
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Log in</h5>
-            <p class="card-text">{{ message }}</p>
-              <form method="post">
-                {{ form.as_p }}
-                {% csrf_token %}
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
-          </div>
-        </div>
-      </div>
-    </div>
     {% endblock content %}
+    </div>
 </body>
 </html>
 
