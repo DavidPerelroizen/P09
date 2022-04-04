@@ -11,12 +11,17 @@ header nav {
   text-decoration: none;
 }
 
-}
 header .header_h1 {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.register_now {
+    border: 1px solid black;
+    text-align: center;
+    padding: 5px;
 }
 
 .main_content {
@@ -73,7 +78,7 @@ header .header_h1 {
 }
 .review .review_rating {
   display: flex;
-  border: 5px red solid;
+  justify-content: center;
 }
 .review .ticket_area {
   width: 100%;
