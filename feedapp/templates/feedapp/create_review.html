@@ -1,19 +1,22 @@
 {% extends 'base.html' %}
     {% block content %}
-        <div class="create_a_review">
-            <h2>Create a review</h2>
-            <div class="create_a_review_area">
-                <form method="post">
-                    <div class="create_a_review_area_ticket_zone">
-                        {{ ticket_form.as_p }}
-                    </div>
-                    <div class="create_a_review_area_review_zone">
-                        {{ review_form.as_p }}
-                        <hr>
-                        <button type="submit">Publish</button>
-                    </div>
-                    {% csrf_token %}
-                </form>
+        <div class="main_content">
+            <div class="create_a_review">
+                <h2>Create a review</h2>
+                <div class="create_a_review_area">
+                    <form method="post">
+                        <div class="create_a_review_area_ticket_zone">
+                            <br>
+                            {{ ticket_form.as_p }}
+                        </div>
+                        <div class="create_a_review_area_review_zone">
+                            <br>
+                            {{ review_form.as_p }}
+                            <button type="submit">Publish</button>
+                        </div>
+                        {% csrf_token %}
+                    </form>
+                </div>
             </div>
         </div>
     {% endblock content %}
