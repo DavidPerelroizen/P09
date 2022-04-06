@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
     {% block content %}
-        <h2>Delete review</h2>
-        {% include 'feedapp/partials/review_snippet.html' with review=post_to_delete %}
-        <hr>
-        <form method="post">
-          {{ delete_post_form }}
-          {% csrf_token %}
-          <button type="submit">Confirm deletion</button>
-        </form>
+        <div class="main_content">
+            <h2>Delete review</h2>
+            <div class="review_area">
+                {% include 'feedapp/partials/review_snippet.html' with review=post_to_delete %}
+                <hr>
+                <form method="post">
+                  {{ delete_post_form }}
+                  {% csrf_token %}
+                  <button type="submit">Confirm deletion</button>
+                </form>
+            </div>
+        </div>
     {% endblock content %}

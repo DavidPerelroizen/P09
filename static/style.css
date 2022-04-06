@@ -60,10 +60,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 5px;
+  min-height: 690px;
 }
+
 .main_content h1 {
   text-align: center;
 }
+
 .main_content h2 {
   text-align: center;
 }
