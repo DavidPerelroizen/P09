@@ -10,7 +10,8 @@
     <title>LITReview</title>
 </head>
 <body>
-    <header>
+    <header class="base_header">
+        <div id="header_spaceholder"></div>
         <div class="header_h1"><h1>LITReview</h1></div>
       <nav>
           <a href="{% url 'home_page' %}">Feed</a>
@@ -23,7 +24,7 @@
     </header>
   {% block content %} {% endblock content %}
   {% if user.is_authenticated %}
-    <p>You are connected as {{ user }}. <a href="{% url 'logout_page' %}">Log out</a></p>
+    <footer>You are connected as {{ user }}. <a href="{% url 'logout_page' %}">Log out</a></footer>
   {% endif %}
 </body>
 </html>
