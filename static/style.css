@@ -64,6 +64,16 @@
   min-height: 690px;
 }
 
+#create_ticket{
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#create_ticket h2 {
+    text-align: center;
+    width: 100%;
+}
+
 .main_content h1 {
   text-align: center;
 }
@@ -97,6 +107,11 @@
   align-items: center;
   border: 1px black solid;
   padding: 5px;
+}
+
+.main_content #ticket_form {
+    border: none;
+    align-items: flex-start;
 }
 .main_content .post {
   border: 1px black solid;
