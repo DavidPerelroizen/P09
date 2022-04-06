@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 
     {% block content %}
-        <h2>Confirm unsubscription?</h2>
-        {% for user_to_unfollow in users_to_unfollow %}
-            <p>You are about to unfollow {{ user_to_unfollow.followed_user.username }}</p>
-             <form method="post">
-                {{ deletion_form }}
-                {% csrf_token %}
-                 <button type="submit">Confirm</button>
-            </form>
-        {% endfor %}
+        <div class="main_content">
+            <h2>Confirm unsubscription?</h2>
+            {% for user_to_unfollow in users_to_unfollow %}
+                <h5>You are about to unfollow <strong>{{ user_to_unfollow.followed_user.username }}</strong></h5>
+                 <form method="post">
+                    {{ deletion_form }}
+                    {% csrf_token %}
+                     <button type="submit">Confirm</button>
+                </form>
+            {% endfor %}
+        </div>
     {% endblock content %}
