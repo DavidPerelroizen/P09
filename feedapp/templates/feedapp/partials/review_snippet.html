@@ -44,6 +44,13 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
+        {% elif review.rating == 0 %}
+            <h5>Not worth opening it -&nbsp </h5>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
         {% endif %}
     </div>
     <p>{{ review.body }}</p>
