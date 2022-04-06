@@ -16,7 +16,6 @@
     <br>
     {% block content %}
     <form method="post">
-      <!-- {{ form.as_p }} -->
       {% for hidden in form.hidden_fields %}
         {{ hidden }}
       {% endfor %}
