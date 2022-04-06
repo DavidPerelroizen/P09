@@ -156,13 +156,30 @@
   justify-content: space-between;
 }
 
+.answer_to_ticket {
+    width: 95%;
+}
+
 .answer_to_ticket .answer_to_ticket_area {
   border: 1px black solid;
 }
-.answer_to_ticket .answer_to_ticket_area .answer_to_ticket_area_ticket_zone {
+
+.answer_to_ticket_area_ticket_zone {
+    padding: 5px;
+}
+
+.answer_to_ticket_area_ticket_zone .ticket {
   border: 1px black solid;
   padding: 5px;
 }
+
+#ticket_zone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
 .answer_to_ticket .answer_to_ticket_area .answer_to_ticket_area_review_zone {
   border: 1px black solid;
   padding: 5px;
