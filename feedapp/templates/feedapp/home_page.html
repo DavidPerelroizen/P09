@@ -18,7 +18,9 @@
                             {% endif %}
                 </div>
                 {% elif post.content_type == 'REVIEW' %}
+                <div class="review_area">
                     {% include 'feedapp/partials/review_snippet.html' with review=post %}
+                </div>
                 {% endif %}
                 <hr>
             {% endfor %}
