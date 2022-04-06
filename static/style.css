@@ -103,7 +103,8 @@ header .header_h1 {
 }
 .review .review_rating {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: baseline;
 }
 .review .ticket_area {
   width: 100%;
