@@ -1,9 +1,23 @@
 {% extends 'base.html' %}
     {% block content %}
-        <h2>Update Review</h2>
-        <form method="post">
-          {{ review_update.as_p }}
-          {% csrf_token %}
-          <button type="submit">Publish</button>
-        </form>
+        <div class="main_content">
+            <div class="answer_to_ticket">
+                <h2>Update Review</h2>
+                <div class="answer_to_ticket_area">
+                    <div class="answer_to_ticket_area_ticket_zone">
+                        <h5>You are publishing a response to: </h5>
+                        <div id="ticket_zone">
+                            {% include 'feedapp/partials/ticket_snippet.html' %}
+                        </div>
+                    </div>
+                    <div class="answer_to_ticket_area_review_zone">
+                        <form method="post">
+                          {{ review_update.as_p }}
+                          {% csrf_token %}
+                          <button type="submit">Publish</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     {% endblock content %}

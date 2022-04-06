@@ -150,7 +150,7 @@ def modify_review(request, review_id):
             review_form.save()
             review.delete()
             return redirect('home_page')
-    return render(request, 'feedapp/review_update.html', context={'review_update': form})
+    return render(request, 'feedapp/review_update.html', context={'review_update': form, 'ticket': review.ticket})
 
 
 @login_required
