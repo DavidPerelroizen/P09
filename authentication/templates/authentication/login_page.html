@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     {% load static %}
+    {% load widget_tweaks %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{% static 'style.css' %}">
@@ -28,7 +29,19 @@
                 <h5 class="card-title">Log in</h5>
                 <p class="card-text">{{ message }}</p>
                   <form method="post">
-                    {{ form.as_p }}
+                    {% for hidden in form.hidden_fields %}
+                        {{ hidden }}
+                    {% endfor %}
+
+                    {% for field in form.visible_fields %}
+                        <div class="form-group">
+                          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                          {{ field|add_class:'form-control' }}
+                          {% for error in field.errors %}
+                            <span class="help-block">{{ error }}</span>
+                          {% endfor %}
+                        </div>
+                    {% endfor %}
                     {% csrf_token %}
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </form>
