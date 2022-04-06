@@ -173,6 +173,14 @@
   padding: 5px;
 }
 
+#ticket_update_zone{
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#ticket_update {
+    border: none;
+}
 #ticket_zone {
     display: flex;
     justify-content: center;

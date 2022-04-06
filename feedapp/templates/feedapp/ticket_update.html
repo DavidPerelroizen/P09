@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
     {% block content %}
-        <h2>Update ticket</h2>
-        <form method="post">
-          {{ ticket_update.as_p }}
-          {% csrf_token %}
-          <button type="submit">Publish</button>
-        </form>
+        <div class="main_content" id="ticket_update_zone">
+            <div class="answer_to_ticket">
+                <div class="answer_to_ticket_area" id="ticket_update">
+                    <h2>Update ticket</h2>
+                    <form method="post">
+                      {{ ticket_update.as_p }}
+                      {% csrf_token %}
+                      <button type="submit">Publish</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     {% endblock content %}
