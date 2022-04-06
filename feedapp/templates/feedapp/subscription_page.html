@@ -1,23 +1,32 @@
 {% extends 'base.html' %}
     {% block content %}
-    <div class="main_content">
-        <div>
+    <div class="main_content" id="main_content_subscription">
+        <div class="follow_block" id="follow_users">
             <h2>Follow users</h2>
-            {% for user_to_follow in users_to_follow %}
-                <div>
-                    {{ user_to_follow.username }}
-                    <button type="submit">
-                        <a href="{% url 'subscription' user_to_follow.id %}">Follow</a>
-                    </button>
-                </div>
-            {% endfor %}
+            <br>
+            <table>
+                {% for user_to_follow in users_to_follow %}
+                    <tr>
+                        <td class="user">
+                            {{ user_to_follow.username }}
+                        </td>
+                        <td>
+                            <button type="submit">
+                                <a href="{% url 'subscription' user_to_follow.id %}">Follow</a>
+                            </button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
         </div>
-        <div>
+        <br>
+        <div class="follow_block" id="followed_users">
             <h2>Followed users</h2>
+            <br>
             <table>
                 {% for user_followed in followed_users %}
                     <tr>
-                        <td>{{ user_followed.followed_user.username }}</td>
+                        <td class="user">{{ user_followed.followed_user.username }}</td>
                         <td>
                             <button type="submit">
                                 <a href="{% url 'unsubscription_page' user_followed.followed_user.id %}">Unsubscribe</a>
@@ -28,12 +37,13 @@
             </table>
         </div>
         <br>
-        <div>
+        <div class="follow_block" id="followers">
             <h2>Followers</h2>
+            <br>
             <table>
                 {% for follower in followers %}
                 <tr>
-                    <td>{{ follower.user.username }}</td>
+                    <td class="user">{{ follower.user.username }}</td>
                 </tr>
                 {% endfor %}
             </table>
