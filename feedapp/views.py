@@ -146,6 +146,7 @@ def modify_review(request, review_id):
         if form.is_valid():
             review_form = form.save(commit=False)
             review_form.user = request.user
+            review_form.ticket = review.ticket
             review_form.save()
             review.delete()
             return redirect('home_page')
