@@ -228,6 +228,20 @@
   border-radius: 5px;
 }
 
+#review_rating {
+    display: flex;
+    justify-content: flex-start;
+}
+
+#review_rating label {
+    width: 60px;
+}
+
+#id_rating {
+    display: flex;
+    justify-content: space-between;
+}
+
 #main_content_subscription{
     justify-content: flex-start;
     align-items: center;

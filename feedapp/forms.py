@@ -13,6 +13,8 @@ class TicketForm(forms.ModelForm):
 
 class ReviewForm(forms.ModelForm):
     edit_form = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+    rating = forms.ChoiceField(widget=forms.RadioSelect, choices=[(0, '0'), (1, '1'), (2, '2'), (3, '3'), (4, '4'),
+                                                                  (5, '5')])
 
     class Meta:
         model = models.Review
