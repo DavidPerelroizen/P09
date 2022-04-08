@@ -41,7 +41,7 @@ def review_creation(request):
     form_ticket = forms.TicketForm()
     if request.method == 'POST':
         form = forms.ReviewForm(request.POST)
-        form_ticket = forms.TicketForm(request.POST)
+        form_ticket = forms.TicketForm(request.POST, request.FILES)
         if form.is_valid() and form_ticket.is_valid():
             ticket_form = form_ticket.save(commit=False)
             ticket_form.user = request.user
@@ -127,7 +127,7 @@ def modify_ticket(request, ticket_id):
     ticket = get_object_or_404(models.Ticket, id=ticket_id)
     form = forms.TicketForm(instance=ticket)
     if request.method == 'POST':
-        form = forms.TicketForm(request.POST)
+        form = forms.TicketForm(request.POST, request.FILES)
         if form.is_valid():
             ticket_form = form.save(commit=False)
             ticket_form.user = request.user

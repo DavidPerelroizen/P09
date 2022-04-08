@@ -4,7 +4,7 @@
             <div class="answer_to_ticket">
                 <div class="answer_to_ticket_area" id="ticket_update">
                     <h2>Update ticket</h2>
-                    <form method="post">
+                    <form method="post" enctype="multipart/form-data">
                       {{ ticket_update.as_p }}
                       {% csrf_token %}
                       <button type="submit">Publish</button>
