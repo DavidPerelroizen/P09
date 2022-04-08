@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load widget_tweaks %}
     {% block content %}
     <div class="main_content">
         <div class="answer_to_ticket">
@@ -11,12 +12,26 @@
                     </div>
                 </div>
                 <div class="answer_to_ticket_area_review_zone">
-                    <h5>Review</h5>
                     <form method="post">
-                    {{ review_form.as_p }}
-                    {% csrf_token %}
-                    <hr>
-                    <button type="submit">Publish</button>
+                        <h5>Review</h5>
+                        <br>
+                        {% for hidden in review_form.hidden_fields %}
+                            {{ hidden }}
+                        {% endfor %}
+                        <div id="review_rating">
+                            <label>{{ review_form.rating.label }}</label>
+                            <div class="radio_rating">
+                                {% render_field review_form.rating %}
+                            </div>
+                        </div>
+                        <label>{{ review_form.headline.label }}</label>
+                        {% render_field review_form.headline class='form-control' %}
+                        <label>{{ review_form.body.label }}</label>
+                        {% render_field review_form.body class='form-control' %}
+                        <br>
+                        {% csrf_token %}
+                        <hr>
+                        <button type="submit">Publish</button>
                     </form>
                 </div>
             </div>
