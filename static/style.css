@@ -112,6 +112,8 @@
 .main_content #ticket_form {
     border: none;
     align-items: flex-start;
+    padding: 20px;
+    width: 95%;
 }
 .main_content .post {
   border: 1px black solid;
@@ -209,6 +211,7 @@
 .create_a_review .create_a_review_area {
   border: 1px black solid;
 }
+
 
 .create_a_review .create_a_review_area .create_a_review_area_ticket_zone {
   border: 1px black solid;

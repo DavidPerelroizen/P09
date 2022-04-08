@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load widget_tweaks %}
     {% block content %}
         <div class="main_content" id="create_ticket">
             <br>
@@ -6,8 +7,20 @@
             <br>
             <div class="ticket_area" id="ticket_form">
                 <form method="post" enctype="multipart/form-data">
-                  {{ ticket_form.as_p }}
+                  <div class="create_a_review_area_ticket_zone">
+                            {% for hidden in ticket_form.hidden_fields %}
+                                {{ hidden }}
+                            {% endfor %}
+                            <label>{{ ticket_form.title.label }}</label>
+                            {% render_field ticket_form.title class='form-control' %}
+                            <label>{{ ticket_form.description.label }}</label>
+                            {% render_field ticket_form.description class='form-control' %}
+                            <br>
+                            <label>{{ ticket_form.image.label }}</label>
+                            {% render_field ticket_form.image %}
+                        </div>
                   {% csrf_token %}
+                    <br>
                   <button type="submit">Publish</button>
                 </form>
             </div>
