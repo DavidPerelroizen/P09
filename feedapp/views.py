@@ -97,6 +97,12 @@ def answer_to_ticket(request, ticket_id):
 
 @login_required
 def follow_user(request):
+    """
+    This function operates queries that will display the users a user can follow, the users it already follows, and
+    the list of its followers.
+    :param request:
+    :return:
+    """
     followed_users = models.UserFollows.objects.filter(user=request.user)
     followers = models.UserFollows.objects.filter(followed_user=request.user)
     users_to_follow = authentication.models.User.objects.exclude(Q(id=request.user.id) |
