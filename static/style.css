@@ -31,7 +31,10 @@
     justify-content: center;
     align-items: center;
 }
-
+.help-block {
+    color: red;
+    font-style: italic;
+}
 #login_zone .card{
     border: none;
     width: 400px;

@@ -37,11 +37,11 @@
                         <div class="form-group">
                           <label for="{{ field.id_for_label }}">{{ field.label }}</label>
                           {{ field|add_class:'form-control' }}
-                          {% for error in field.errors %}
-                            <span class="help-block">{{ error }}</span>
-                          {% endfor %}
                         </div>
                     {% endfor %}
+                    {% if form.errors %}
+                        <span class="help-block">Username or password invalid</span>
+                    {% endif %}
                     {% csrf_token %}
                       <div id="login_button_positioner">
                           <button type="submit" class="btn btn-primary">Login</button>
