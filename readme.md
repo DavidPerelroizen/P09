@@ -38,17 +38,17 @@ localdir/Scripts/activate
 
 Django
 ```bash
-python pip install django
+pip install django
 ```
 
 Django widget tweaks
 ```bash
-python pip install django-widget-tweaks
+pip install django-widget-tweaks
 ```
 
 Pillow
 ```bash
-python pip install Pillow
+pip install Pillow
 ```
 
 Flake8
