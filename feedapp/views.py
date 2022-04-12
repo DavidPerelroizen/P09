@@ -11,6 +11,9 @@ from django.db.models import CharField, Value, Q
 
 @login_required
 def home_page(request):
+    """"
+    Defines the home_page view and the objects that would be displayed.
+    """
     follower = models.UserFollows.objects.filter(user=request.user).values('followed_user')
     tickets = models.Ticket.objects.filter(Q(user=request.user) | Q(user__in=follower))
     reviews = models.Review.objects.filter(Q(user=request.user) | Q(user__in=follower) |
@@ -19,6 +22,7 @@ def home_page(request):
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
     posts = sorted(chain(tickets, reviews), key=lambda post: post.time_created, reverse=True)
 
+    # Implements a pagination to have maximum 5 elements per page
     paginator = Paginator(posts, 5)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -28,6 +32,11 @@ def home_page(request):
 
 @login_required
 def ticket_creation(request):
+    """
+    This view will feed the ticket creation page
+    :param request:
+    :return:
+    """
     form = forms.TicketForm()
     if request.method == 'POST':
         form = forms.TicketForm(request.POST, request.FILES)
@@ -41,6 +50,11 @@ def ticket_creation(request):
 
 @login_required
 def review_creation(request):
+    """
+    This view will feed the review creation page
+    :param request:
+    :return:
+    """
     form = forms.ReviewForm()
     form_ticket = forms.TicketForm()
     if request.method == 'POST':
@@ -61,14 +75,20 @@ def review_creation(request):
 
 @login_required
 def answer_to_ticket(request, ticket_id):
-    ticket_to_answer = get_object_or_404(models.Ticket, id=ticket_id)
-    form_review = forms.ReviewForm()
+    """
+    This view helps to create a review about a specific ticket
+    :param request:
+    :param ticket_id:
+    :return:
+    """
+    ticket_to_answer = get_object_or_404(models.Ticket, id=ticket_id)  # Get the ticket to be answered to
+    form_review = forms.ReviewForm()  # Initialize a review form
     if request.method == 'POST':
         form_review = forms.ReviewForm(request.POST)
         if form_review.is_valid():
             review_form = form_review.save(commit=False)
-            review_form.user = request.user
-            review_form.ticket = ticket_to_answer
+            review_form.user = request.user  # Put the current user as the creator of the review
+            review_form.ticket = ticket_to_answer  # Put the specific ticket in the review attributes
             review_form.save()
             return redirect('home_page')
     return render(request, 'feedapp/answer_ticket.html', context={'review_form': form_review,

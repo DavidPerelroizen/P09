@@ -8,6 +8,11 @@ from django.contrib.auth import login
 
 
 def register_page(request):
+    """
+    This view will enable a user to create his profile on the app.
+    :param request: username and valid password
+    :return:
+    """
     form = forms.RegisterForm()
     if request.method == 'POST':
         form = forms.RegisterForm(request.POST)
