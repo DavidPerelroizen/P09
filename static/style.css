@@ -40,6 +40,11 @@
     text-align: center;
     padding: 10px;
 }
+
+#login_button_positioner {
+    display: flex;
+    justify-content: flex-end;
+}
 .register_now {
     border: 1px solid black;
     height: 100%;
