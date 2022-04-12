@@ -148,12 +148,19 @@ def unfollow_user(request, user_id):
 
 @login_required
 def my_posts_page(request):
+    """
+    This function will operate queries that will extract and gather all the tickets and reviews created by the user
+    himself
+    :param request:
+    :return:
+    """
     tickets = models.Ticket.objects.filter(user=request.user)
     reviews = models.Review.objects.filter(user=request.user)
     tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
     posts = sorted(chain(tickets, reviews), key=lambda post: post.time_created, reverse=True)
 
+    # Implements a pagination to have maximum 5 elements per page
     paginator = Paginator(posts, 5)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -163,6 +170,12 @@ def my_posts_page(request):
 
 @login_required
 def modify_ticket(request, ticket_id):
+    """
+    This function will help to modify a specific ticket based on its ID
+    :param request:
+    :param ticket_id:
+    :return:
+    """
     ticket = get_object_or_404(models.Ticket, id=ticket_id)
     form = forms.TicketForm(instance=ticket)
     if request.method == 'POST':
@@ -178,6 +191,12 @@ def modify_ticket(request, ticket_id):
 
 @login_required
 def modify_review(request, review_id):
+    """
+    This function will help to modify a specific review based on its ID
+    :param request:
+    :param review_id:
+    :return:
+    """
     review = get_object_or_404(models.Review, id=review_id)
     form = forms.ReviewForm(instance=review)
     if request.method == 'POST':
@@ -194,6 +213,12 @@ def modify_review(request, review_id):
 
 @login_required
 def delete_ticket(request, ticket_id):
+    """
+    Ticket deletion specific view
+    :param request:
+    :param ticket_id:
+    :return:
+    """
     post_to_delete = get_object_or_404(models.Ticket, id=ticket_id)
     delete_post_form = forms.DeletePostForm()
     if request.method == 'POST':
@@ -208,6 +233,12 @@ def delete_ticket(request, ticket_id):
 
 @login_required
 def delete_review(request, review_id):
+    """
+    Review deletion specific view
+    :param request:
+    :param review_id:
+    :return:
+    """
     post_to_delete = get_object_or_404(models.Review, id=review_id)
     delete_post_form = forms.DeletePostForm()
     if request.method == 'POST':
