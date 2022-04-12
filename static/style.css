@@ -54,6 +54,10 @@
     width: 100%;
 }
 
+.register_now form {
+    width: 60%;
+}
+
 .main_content {
   border: 1px black solid;
   display: flex;
