@@ -37,10 +37,9 @@ class Review(models.Model):
 
 class UserFollows(models.Model):
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    followed_user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='followed_by')
+    followed_user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                                      related_name='followed_by')
 
     class Meta:
         unique_together = ('user', 'followed_user')
         constraints = [models.CheckConstraint(check=~models.Q(user=models.F('followed_user')), name='no_self_follow')]
-
-

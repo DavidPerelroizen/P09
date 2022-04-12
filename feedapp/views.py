@@ -5,7 +5,6 @@ import authentication.models
 from . import forms, models
 from itertools import chain
 from django.db.models import CharField, Value, Q
-from authentication.models import User
 
 # Create your views here.
 
@@ -91,7 +90,7 @@ def follow_user(request):
 def follow_user_bis(request, user_id):
     try:
         user = authentication.models.User.objects.get(id=user_id)
-    except Exception as err:
+    except Exception:
         pass
     user_follows = models.UserFollows()
     user_follows.user = request.user
@@ -113,8 +112,6 @@ def unfollow_user(request, user_id):
     return render(request, 'feedapp/unsubscription_page.html', context={'deletion_form': form,
                                                                         'users_to_unfollow':
                                                                             users_to_unfollow})
-
-
 
 
 @login_required
