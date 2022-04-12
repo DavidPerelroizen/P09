@@ -108,6 +108,12 @@ def follow_user(request):
 
 @login_required
 def follow_user_bis(request, user_id):
+    """
+    This function associates a user with its follower (request.user)
+    :param request:
+    :param user_id:
+    :return:
+    """
     try:
         user = authentication.models.User.objects.get(id=user_id)
     except Exception:
