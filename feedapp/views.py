@@ -119,10 +119,10 @@ def search_user(request):
     :return:
     """
     if request.method == 'GET':
-        user_searched = request.GET.get('username', None)
+        user_searched = request.GET.get('search', None)
         if user_searched:
             results = authentication.models.User.objects.filter(Q(username__icontains=user_searched))
-            return render(request, 'feedapp/subscription_page.html', context={'results': results})
+    return render(request, 'feedapp/subscription_page.html', context={'results': results})
 
 
 @login_required
