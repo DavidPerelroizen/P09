@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordResetView, PasswordResetDoneView
 from feedapp.views import home_page, ticket_creation, review_creation, answer_to_ticket, follow_user, my_posts_page, \
     modify_ticket, modify_review, delete_ticket, delete_review, unfollow_user, follow_user_bis, search_user
 from authentication.views import register_page
@@ -31,6 +31,11 @@ urlpatterns = [
          name='login_page'),
     path('logout_page/', LogoutView.as_view(),
          name='logout_page'),
+    path('password_reset_page/', PasswordResetView.as_view(template_name='authentication/password_reset_form.html'),
+         name='password_reset_page'),
+    path('password_reset_page/done', PasswordResetDoneView.as_view(
+        template_name='authentication/password_reset_done_form.html'),
+         name='password_reset_done'),
     path('home_page/', home_page, name='home_page'),
     path('register_page/', register_page, name='register_page'),
     path('create_ticket/', ticket_creation, name='create_ticket'),

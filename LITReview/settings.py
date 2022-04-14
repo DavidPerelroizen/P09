@@ -139,3 +139,7 @@ LOGOUT_REDIRECT_URL = LOGIN_URL
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = 'media/'
+
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+
+EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
