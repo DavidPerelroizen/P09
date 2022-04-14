@@ -1,4 +1,4 @@
-# LITReview app
+ # LITReview app
 
 The LITReview app aims at helping a community of users to consult or ask for a book review at will.
 
@@ -36,29 +36,10 @@ localdir/Scripts/activate
 
 ### Install the necessary packages
 
-Django
+All necessary packages are contained in the requirements.txt.
+Install them by running the following command in terminal.
 ```bash
-pip install django
-```
-
-Django widget tweaks
-```bash
-pip install django-widget-tweaks
-```
-
-Pillow
-```bash
-pip install Pillow
-```
-
-Flake8
-```bash
-python -m pip install flake8
-```
-
-Flake8 html report
-```bash
-pip install flake8-html
+pip install -r requirements.txt
 ```
 
 ## Usage
