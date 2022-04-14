@@ -37,7 +37,32 @@ localdir/Scripts/activate
 ### Install the necessary packages
 
 All necessary packages are contained in the requirements.txt.
-Install them by running the following command in terminal.
+```bash
+asgiref==3.5.0
+certifi==2021.10.8
+charset-normalizer==2.0.12
+Django==4.0.3
+django-icons==21.3
+django-widget-tweaks==1.4.12
+flake8==4.0.1
+flake8-html==0.4.1
+idna==3.3
+importlib-metadata==4.11.2
+Jinja2==3.0.3
+MarkupSafe==2.1.0
+mccabe==0.6.1
+Pillow==9.0.1
+pycodestyle==2.8.0
+pyflakes==2.4.0
+Pygments==2.11.2
+requests==2.27.1
+sqlparse==0.4.2
+tzdata==2021.5
+urllib3==1.26.9
+zipp==3.7.0
+```
+
+Install them all by running the following command in terminal.
 ```bash
 pip install -r requirements.txt
 ```
