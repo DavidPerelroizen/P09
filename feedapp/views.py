@@ -112,6 +112,19 @@ def follow_user(request):
                                                                       'users_to_follow': users_to_follow})
 
 
+def search_user(request):
+    """
+    This function will help the current user to look for another user to follow.
+    :param request:
+    :return:
+    """
+    if request.method == 'GET':
+        user_searched = request.GET.get('username', None)
+        if user_searched:
+            results = authentication.models.User.objects.filter(Q(username__icontains=user_searched))
+            return render(request, 'feedapp/subscription_page.html', context={'results': results})
+
+
 @login_required
 def follow_user_bis(request, user_id):
     """

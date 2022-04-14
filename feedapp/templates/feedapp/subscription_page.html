@@ -2,7 +2,16 @@
     {% block content %}
     <div class="main_content" id="main_content_subscription">
         <div class="follow_block" id="follow_users">
-            <h2>Follow users</h2>
+            <h2>Follow users</h2>*
+            <br>
+            <form action="{% url 'subscription_page' %}" method="get">
+                {% csrf_token %}
+                <input type="text" name="username">
+                <input type="submit" name="submit" value="Search">
+            </form>
+            {% for result in results %}
+                <p>result {{ result.user.username }} </p>
+            {% endfor %}
             <br>
             <table>
                 {% for user_to_follow in users_to_follow %}
