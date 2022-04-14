@@ -44,7 +44,7 @@ urlpatterns = [
     path('feedapp/<int:review_id>/delete_review_page', delete_review, name='delete_review_page'),
     path('feedapp/<int:user_id>/unsubscription_page', unfollow_user, name='unsubscription_page'),
     path('feedapp/subscription/<int:user_id>', follow_user_bis, name='subscription'),
-    path('subscription_page/', search_user, name='subscription_page'),
+    path('subscription_page_bis/', search_user, name='subscription_page_bis'),
 ]
 
 if settings.DEBUG:

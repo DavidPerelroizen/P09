@@ -118,11 +118,19 @@ def search_user(request):
     :param request:
     :return:
     """
-    if request.method == 'GET':
-        user_searched = request.GET.get('search', None)
+    followed_users = models.UserFollows.objects.filter(user=request.user)
+    followers = models.UserFollows.objects.filter(followed_user=request.user)
+    users_to_follow = authentication.models.User.objects.exclude(Q(id=request.user.id) |
+                                                                 Q(id__in=followed_users.values('followed_user')))
+    results = []
+    if request.method == 'POST':
+        user_searched = request.POST.get('search', None)
         if user_searched:
-            results = authentication.models.User.objects.filter(Q(username__icontains=user_searched))
-    return render(request, 'feedapp/subscription_page.html', context={'results': results})
+            results = authentication.models.User.objects.filter(username__icontains=user_searched)
+    return render(request, 'feedapp/subscription_page.html', context={'results': results,
+                                                                      'followed_users': followed_users,
+                                                                      'followers': followers,
+                                                                      'users_to_follow': users_to_follow})
 
 
 @login_required
